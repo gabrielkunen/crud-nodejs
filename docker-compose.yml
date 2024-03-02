@@ -1,0 +1,21 @@
+services:
+  postgres:
+    container_name: node_postgres
+    build: .
+    ports: 
+      - 10000:5432
+    environment:
+      POSTGRES_PASSWORD: 123
+      POSTGRES_USER: postgres
+      POSTGRES_DB: usuariodb
+    volumes:
+      - nodepg_data:/var/lib/postgresql/data
+    networks:
+      - rede_quiz
+
+volumes:
+  nodepg_data:
+
+networks:
+  rede_quiz:
+    driver: bridge
