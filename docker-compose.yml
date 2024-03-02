@@ -11,11 +11,11 @@ services:
     volumes:
       - nodepg_data:/var/lib/postgresql/data
     networks:
-      - rede_quiz
+      - rede_node
 
 volumes:
   nodepg_data:
 
 networks:
-  rede_quiz:
+  rede_node:
     driver: bridge
