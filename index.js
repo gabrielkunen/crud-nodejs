@@ -7,8 +7,8 @@ const app = express();
 app.use(bodyParser.json());
 
 const pool = new Pool({
-  host: 'localhost',
-  port: 10000,
+  host: 'node_postgres',
+  port: 5432,
   database: 'usuariodb',
   user: 'postgres',
   password: '123',
@@ -39,7 +39,6 @@ app.post('/usuario', async (req, res) => {
 });
 
 app.get('/usuario', async (_, res) => {
-
   const client = await pool.connect()
 
   try {

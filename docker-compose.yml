@@ -1,7 +1,7 @@
 services:
   postgres:
     container_name: node_postgres
-    build: .
+    build: ./db
     ports: 
       - 10000:5432
     environment:
@@ -12,6 +12,16 @@ services:
       - nodepg_data:/var/lib/postgresql/data
     networks:
       - rede_node
+
+  node-api:
+    container_name: node_api
+    build: .
+    ports: 
+      - 10001:3000
+    networks:
+      - rede_node
+    depends_on:
+      - postgres
 
 volumes:
   nodepg_data:
