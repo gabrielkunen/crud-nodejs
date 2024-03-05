@@ -13,8 +13,8 @@ services:
     networks:
       - rede_node
 
-  node-api:
-    container_name: node_api
+  node-api-1:
+    container_name: node_api_1
     build: .
     ports: 
       - 10001:3000
@@ -22,6 +22,26 @@ services:
       - rede_node
     depends_on:
       - postgres
+
+  node-api-2:
+    container_name: node_api_2
+    build: .
+    ports: 
+      - 10002:3000
+    networks:
+      - rede_node
+    depends_on:
+      - postgres
+
+  nginx:
+    build: ./nginx
+    ports:
+      - '80:80'
+    networks:
+      - rede_node
+    depends_on:
+      - node-api-1
+      - node-api-2
 
 volumes:
   nodepg_data:
